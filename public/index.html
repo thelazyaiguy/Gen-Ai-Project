@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conspiracy Theory Generator</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      padding: 20px;
+      margin: 0;
+    }
+    h1 {
+      text-align: center;
+      font-size: 3em;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 15px;
+      margin: 15px 0;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      font-size: 1.1em;
+    }
+    button {
+      width: 100%;
+      padding: 15px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #e9f7ef;
+      border: 2px solid #d4edda;
+      border-radius: 8px;
+      font-size: 1.1em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Conspiracy Theory Generator</h1>
+    <p>Enter any conspiracy theory below, and our AI will give you a response:</p>
+    <input type="text" id="theory" placeholder="Enter a conspiracy theory...">
+    <button onclick="generateTheory()">Generate</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    async function generateTheory() {
+      const theory = document.getElementById('theory').value;
+      if (!theory) {
+        alert("Please enter a conspiracy theory.");
+        return;
+      }
+      // Show loading state
+      document.getElementById('result').innerHTML = "Generating response, please wait...";
+
+      const response = await fetch('/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ theory })
+      });
+
+      const data = await response.json();
+      document.getElementById('result').innerHTML = data.reply;
+    }
+  </script>
+</body>
+</html>
