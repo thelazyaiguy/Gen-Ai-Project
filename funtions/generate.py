@@ -1,8 +1,8 @@
 import json
 import openai
 
-# Set up your OpenAI API key
-# openai.api_key = "sk-svcacct-OAI6Jicdzf3XOPHHwaXvJeIOFwpB5E3hALWSBRxTUpatnD7GVTUb7mPkri83A6T3BlbkFJz-Ry6AyxT6QdvUAEJL7xNjhmVE0055OvJcnIxX8W2u1w3PzLUGRYfQhDsOdnYA"
+#Set up your OpenAI API key
+#openai.api_key = "sk-svcacct-OAI6Jicdzf3XOPHHwaXvJeIOFwpB5E3hALWSBRxTUpatnD7GVTUb7mPkri83A6T3BlbkFJz-Ry6AyxT6QdvUAEJL7xNjhmVE0055OvJcnIxX8W2u1w3PzLUGRYfQhDsOdnYA"
 def handler(event, context):
     try:
         # Parse the data from the request body
