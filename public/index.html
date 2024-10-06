@@ -76,11 +76,17 @@
       // Show loading state
       document.getElementById('result').innerHTML = "Generating response, please wait...";
 
-     const response = await fetch('/.netlify/functions/generate', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ theory })
-});
+      const response = await fetch('/.netlify/functions/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ theory })
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        document.getElementById('result').innerHTML = `Error: ${errorText}`;
+        return;
+      }
 
       const data = await response.json();
       document.getElementById('result').innerHTML = data.reply;
